@@ -133,6 +133,32 @@ export default function Home() {
         return `현재 개장 중 🟢`;
     };
 
+    const findMyLocation = () => {
+        if (!navigator.geolocation) {
+            alert("현재 브라우저에서는 위치 정보를 지원하지 않습니다.");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            if (mapRef.current) {
+                const moveLatLon = new window.kakao.maps.LatLng(lat, lng);
+                mapRef.current.panTo(moveLatLon);
+                mapRef.current.setLevel(5); // Zoom in closer for user location
+                
+                // Add a small marker for user location
+                const content = `<div class="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-md animate-pulse"></div>`;
+                const customOverlay = new window.kakao.maps.CustomOverlay({
+                    position: moveLatLon,
+                    content: content,
+                });
+                customOverlay.setMap(mapRef.current);
+            }
+        }, () => {
+            alert("스마트폰/브라우저의 위치 접근 권한을 허용해주세요!");
+        });
+    };
+
     return (
         <div className="space-y-8">
             <Script 
@@ -214,6 +240,15 @@ export default function Home() {
                         </div>
                     )}
                     <div ref={mapContainerRef} className="w-full h-full"></div>
+                    
+                    {/* GPS Button */}
+                    <button 
+                        onClick={findMyLocation}
+                        className="absolute bottom-6 right-6 z-20 bg-white p-3 md:p-4 rounded-full shadow-xl border-2 border-sky-400 text-2xl hover:scale-110 transition-transform flex items-center justify-center text-slate-800"
+                        title="내 위치 찾기"
+                    >
+                        🎯
+                    </button>
                 </div>
             </section>
 
@@ -258,21 +293,52 @@ export default function Home() {
                                     <span className="text-slate-400 mr-2">요금</span>
                                     <span className="text-indigo-600 text-lg">{place.price}</span>
                                 </div>
-                                <button 
-                                    onClick={() => {
-                                        if (mapRef.current) {
-                                            mapRef.current.panTo(new window.kakao.maps.LatLng(place.lat, place.lng));
-                                            mapRef.current.setLevel(5);
-                                            window.scrollTo({ top: 300, behavior: 'smooth' });
-                                        }
-                                    }}
-                                    className="text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl transition-colors shadow-md"
-                                >
-                                    지도 📍
-                                </button>
+                                <div className="flex gap-2">
+                                    <button 
+                                        onClick={() => {
+                                            if (mapRef.current) {
+                                                mapRef.current.panTo(new window.kakao.maps.LatLng(place.lat, place.lng));
+                                                mapRef.current.setLevel(5);
+                                                window.scrollTo({ top: 300, behavior: 'smooth' });
+                                            }
+                                        }}
+                                        className="text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl transition-colors shadow-sm"
+                                    >
+                                        지도 📍
+                                    </button>
+                                    <a 
+                                        href={`https://map.kakao.com/link/to/${place.name},${place.lat},${place.lng}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1"
+                                    >
+                                        길찾기 🚗
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            {/* CONTRIBUTION BANNER */}
+            <section className="bg-gradient-to-br from-sky-50 to-blue-50 rounded-3xl p-8 md:p-12 border border-sky-100 text-center shadow-inner relative overflow-hidden">
+                <div className="absolute -left-10 -top-10 w-40 h-40 bg-white rounded-full blur-2xl opacity-50"></div>
+                <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-sky-200 rounded-full blur-2xl opacity-50"></div>
+                <div className="relative z-10 space-y-4">
+                    <div className="text-5xl mb-4 animate-bounce">💡</div>
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">나만 아는 우리 동네 물놀이 명소가 있다면?</h2>
+                    <p className="text-slate-600 font-medium pb-4 max-w-lg mx-auto">
+                        갓성비맵은 여러분의 제보로 완성됩니다! 동네 무료 분수, 저렴한 수영장, 취사 가능한 숨은 계곡을 알려주세요.
+                    </p>
+                    <a 
+                        href="https://forms.gle/여기에구글폼주소를넣어주세요" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-400 to-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg md:text-xl hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-1 transition-all"
+                    >
+                        ✍️ 꿀장소 제보하기
+                    </a>
                 </div>
             </section>
 
