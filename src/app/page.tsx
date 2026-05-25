@@ -128,6 +128,12 @@ export default function Home() {
 
             {/* VIBRANT HERO SECTION */}
             <section className="bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 rounded-[2.5rem] p-8 md:p-14 text-center shadow-2xl relative overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay blur-sm scale-110" 
+                    style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+                ></div>
+
                 {/* Sun Element */}
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-300 rounded-full blur-3xl opacity-60 mix-blend-screen animate-pulse"></div>
                 {/* Water Waves */}
@@ -180,8 +186,14 @@ export default function Home() {
                         <div className="absolute inset-0 flex items-center justify-center bg-sky-50/80 backdrop-blur-sm z-10 flex-col gap-4">
                             <div className="text-6xl animate-bounce">🏖️</div>
                             <span className="font-bold text-sky-800 text-lg">
-                                {isLoading ? "구글 시트에서 명소 불러오는 중..." : "지도 불러오는 중..."}
+                                {isLoading ? "구글 시트에서 명소 불러오는 중..." : "지도 불러오는 중... (잠시만 기다려주세요)"}
                             </span>
+                            {!isLoading && !mapLoaded && (
+                                <p className="text-sm text-sky-600 mt-2">
+                                    지도가 계속 안 뜬다면 카카오 디벨로퍼스에 <br/>
+                                    <strong>https://summer-map.vercel.app</strong> 도메인을 추가해주세요!
+                                </p>
+                            )}
                         </div>
                     )}
                     <div ref={mapContainerRef} className="w-full h-full"></div>
