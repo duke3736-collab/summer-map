@@ -122,7 +122,7 @@ export default function Home() {
         <div className="space-y-8">
             <Script 
                 src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_APP_KEY}&autoload=false`}
-                strategy="lazyOnload"
+                strategy="afterInteractive"
                 onLoad={initMap}
             />
 
@@ -130,9 +130,11 @@ export default function Home() {
             <section className="bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 rounded-[2.5rem] p-8 md:p-14 text-center shadow-2xl relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay blur-sm scale-110" 
+                    className="absolute inset-0 bg-cover bg-center opacity-40 scale-110" 
                     style={{ backgroundImage: "url('/images/hero-bg.png')" }}
                 ></div>
+                {/* Dark Overlay to make text readable */}
+                <div className="absolute inset-0 bg-sky-900/30"></div>
 
                 {/* Sun Element */}
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-300 rounded-full blur-3xl opacity-60 mix-blend-screen animate-pulse"></div>
