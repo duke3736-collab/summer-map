@@ -152,7 +152,7 @@ export default function Home() {
                     </span>
                     <h1 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-md">
                         전국 여름 물놀이 <br/>
-                        <span className="text-amber-300 drop-shadow-lg">거지맵</span> 🏝️
+                        <span className="text-amber-300 drop-shadow-lg">갓성비맵</span> 🏝️
                     </h1>
                     <p className="text-sky-100 text-lg md:text-xl font-semibold max-w-2xl mx-auto">
                         공짜 동네 바닥분수부터 5천원 야외 수영장까지! <br/> 가장 알뜰하고 시원하게 여름을 즐기는 방법
@@ -260,7 +260,7 @@ export default function Home() {
 
             <div className="pt-8">
                 <KakaoShareButton 
-                    title="2026 전국 여름 물놀이 거지맵 🏝️" 
+                    title="2026 전국 여름 물놀이 갓성비맵 🏝️" 
                     description="공짜 동네 물놀이터부터 가성비 수영장, 취사 가능한 계곡까지! 우리 동네 꿀정보 확인하기" 
                     kakaoAppKey={KAKAO_APP_KEY}
                 />
