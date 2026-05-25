@@ -18,34 +18,6 @@ interface WaterPlace {
     description: string;
 }
 
-const DUMMY_DATA: WaterPlace[] = [
-    {
-        id: 1, name: "여의도 한강공원 수영장", lat: 37.52843, lng: 126.93307, type: 'cheap',
-        openDate: "2026-06-20", price: "5,000원", tags: ["#가성비", "#야간개장", "#샤워가능"],
-        description: "저렴한 가격에 한강뷰 야외 수영을 즐길 수 있는 최고의 가성비 명소입니다."
-    },
-    {
-        id: 2, name: "광교 호수공원 바닥분수", lat: 37.28312, lng: 127.06456, type: 'free',
-        openDate: "2026-05-01", price: "무료", tags: ["#공짜", "#아이와함께", "#텐트가능(지정구역)"],
-        description: "아이들이 안전하게 뛰어놀 수 있는 무료 물놀이터입니다. 주차비만 내면 하루종일 놀 수 있어요!"
-    },
-    {
-        id: 3, name: "해운대 해수욕장", lat: 35.15869, lng: 129.16038, type: 'beach',
-        openDate: "2026-06-01", price: "무료 (파라솔 별도)", tags: ["#해수욕장", "#야간개장", "#취사불가"],
-        description: "대한민국 대표 해수욕장! 부분 개장을 6월 1일부터 시작합니다."
-    },
-    {
-        id: 4, name: "가평 명지계곡", lat: 37.91572, lng: 127.43936, type: 'valley',
-        openDate: "상시 개방", price: "무료 (평상 대여 별도)", tags: ["#취사가능", "#계곡", "#텐트설치가능"],
-        description: "맑은 물과 얕은 수심으로 가족 단위 피서객에게 인기가 많은 취사 가능 계곡입니다."
-    },
-    {
-        id: 5, name: "서울숲 물놀이터", lat: 37.54438, lng: 127.03744, type: 'free',
-        openDate: "2026-07-01", price: "무료", tags: ["#공짜", "#도심속피서", "#대중교통편리"],
-        description: "도심 한복판에서 무료로 즐기는 여름 물놀이! 돗자리 펴고 쉬기 좋아요."
-    }
-];
-
 declare global {
     interface Window {
         kakao: any;
@@ -55,7 +27,8 @@ declare global {
 export default function Home() {
     const [mapLoaded, setMapLoaded] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<MapCategory>('all');
-    const [places, setPlaces] = useState<WaterPlace[]>(DUMMY_DATA);
+    const [places, setPlaces] = useState<WaterPlace[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const mapContainerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<any>(null);
     const markersRef = useRef<any[]>([]);
@@ -74,7 +47,6 @@ export default function Home() {
             const map = new window.kakao.maps.Map(mapContainerRef.current, options);
             mapRef.current = map;
             setMapLoaded(true);
-            renderMarkers(DUMMY_DATA, map);
         });
     };
 
@@ -109,6 +81,21 @@ export default function Home() {
             markersRef.current.push(customOverlay);
         });
     };
+
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            try {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbzcgqdSvU52oNz9Q7etD3fqy6AzquqS5IqwavCqLT9JA4t9rUCxlRazFg2Cn-WX5Py76g/exec");
+                const data = await res.json();
+                setPlaces(data);
+            } catch (err) {
+                console.error("Failed to load map data", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchPlaces();
+    }, []);
 
     useEffect(() => {
         if (mapLoaded && mapRef.current) {
@@ -189,10 +176,12 @@ export default function Home() {
 
                 {/* Map */}
                 <div className="relative w-full h-[450px] md:h-[600px] bg-sky-50">
-                    {!mapLoaded && (
+                    {(!mapLoaded || isLoading) && (
                         <div className="absolute inset-0 flex items-center justify-center bg-sky-50/80 backdrop-blur-sm z-10 flex-col gap-4">
                             <div className="text-6xl animate-bounce">🏖️</div>
-                            <span className="font-bold text-sky-800 text-lg">전국 물놀이 명소 불러오는 중...</span>
+                            <span className="font-bold text-sky-800 text-lg">
+                                {isLoading ? "구글 시트에서 명소 불러오는 중..." : "지도 불러오는 중..."}
+                            </span>
                         </div>
                     )}
                     <div ref={mapContainerRef} className="w-full h-full"></div>
