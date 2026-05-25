@@ -37,6 +37,9 @@ export default function Home() {
 
     const initMap = () => {
         if (!window.kakao || !window.kakao.maps) return;
+        
+        // Prevent multiple initializations
+        if (mapLoaded) return;
 
         window.kakao.maps.load(() => {
             if (!mapContainerRef.current) return;
@@ -49,6 +52,18 @@ export default function Home() {
             setMapLoaded(true);
         });
     };
+
+    // Polling fallback in case Script onLoad doesn't fire
+    useEffect(() => {
+        if (mapLoaded) return;
+        const interval = setInterval(() => {
+            if (window.kakao && window.kakao.maps) {
+                initMap();
+                clearInterval(interval);
+            }
+        }, 500);
+        return () => clearInterval(interval);
+    }, [mapLoaded]);
 
     const getMarkerIcon = (type: MapCategory) => {
         switch(type) {
