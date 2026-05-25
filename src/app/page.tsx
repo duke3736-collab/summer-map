@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import KakaoShareButton from "@/components/KakaoShareButton";
+import AdSense from "@/components/AdSense";
 
 type MapCategory = 'all' | 'free' | 'cheap' | 'beach' | 'valley';
 
@@ -252,6 +253,11 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* AdSense Unit (Top) */}
+            <div className="py-4">
+                <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
+            </div>
+
             {/* LIST SECTION */}
             <section className="space-y-6">
                 <div className="flex items-center justify-between px-2">
@@ -341,6 +347,11 @@ export default function Home() {
                     </a>
                 </div>
             </section>
+
+            {/* AdSense Unit (Bottom) */}
+            <div className="py-4">
+                <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
+            </div>
 
             <div className="pt-8">
                 <KakaoShareButton 
