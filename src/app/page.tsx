@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import ShareButtons from "@/components/ShareButtons";
+import PWAInstallButton from "@/components/PWAInstallButton";
 import AdSense from "@/components/AdSense";
 import { isDiscountRegion } from "@/utils/regions";
 
@@ -250,6 +251,7 @@ export default function Home() {
                             linkUrl="https://map.weknews.com/"
                             kakaoAppKey={KAKAO_APP_KEY}
                         />
+                        <PWAInstallButton />
                     </div>
                     
                     <a href="https://weknews.com/how-to-apply-for-the-2026-accommodation-sale-festa/" target="_blank" rel="noopener noreferrer" className="mt-2 mx-auto max-w-lg block w-full bg-rose-600/90 hover:bg-rose-600 border border-rose-400 rounded-xl p-3 shadow-lg transition-transform hover:scale-105 animate-pulse cursor-pointer">
