@@ -298,21 +298,22 @@ export default function Home() {
 
             {/* SPONSOR / AFFILIATE BANNER */}
             <div className="pb-8 space-y-4">
-                {/* 야놀자 배너 */}
-                <a href="https://www.yanolja.com/" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                {/* 쿠팡 트래블 (숙소) 배너 */}
+                <a href="https://link.coupang.com/a/d3CDcwHYLA" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
                     <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition-colors"></div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
                         <div className="flex items-center gap-4">
                             <span className="text-5xl group-hover:animate-bounce">🏨</span>
                             <div>
-                                <h3 className="text-xl md:text-2xl font-black mb-1">해수욕장 & 계곡 주변 숙소 실시간 최저가</h3>
-                                <p className="text-pink-100 font-medium text-sm md:text-base">야놀자/여기어때 여름 성수기 펜션·호텔 초특가 모음전!</p>
+                                <h3 className="text-xl md:text-2xl font-black mb-1">여름 피서지 주변 숙소 실시간 최저가</h3>
+                                <p className="text-pink-100 font-medium text-sm md:text-base">쿠팡 트래블 단독! 여름 성수기 펜션·호텔 초특가 (최대 3% 적립)</p>
                             </div>
                         </div>
                         <span className="shrink-0 w-full md:w-auto text-center bg-white text-rose-600 font-black px-8 py-4 rounded-2xl shadow-md group-hover:bg-rose-50 transition-colors text-lg">
-                            특가 확인하기 👉
+                            특가 숙소 보기 👉
                         </span>
                     </div>
+                    <div className="absolute bottom-2 right-4 text-[10px] text-white/40">파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있음</div>
                 </a>
 
                 {/* 쿠팡 파트너스 배너 */}
