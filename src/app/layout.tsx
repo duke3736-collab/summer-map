@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "2026 전국 여름 물놀이 갓성비맵",
     description: "전국 해수욕장 개장일, 가성비 수영장, 취사 가능 계곡 총정리!",
-    url: "https://summer-map.vercel.app",
+    url: "https://map.weknews.com",
     siteName: "갓성비맵",
     locale: "ko_KR",
     type: "website",

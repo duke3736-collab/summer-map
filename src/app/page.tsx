@@ -234,8 +234,8 @@ export default function Home() {
                             </span>
                             {!isLoading && !mapLoaded && (
                                 <p className="text-sm text-sky-600 mt-2">
-                                    지도가 계속 안 뜬다면 카카오 디벨로퍼스에 <br/>
-                                    <strong>https://summer-map.vercel.app</strong> 도메인을 추가해주세요!
+                                    <p>지도가 계속 안 뜬다면 카카오 디벨로퍼스에</p>
+                                    <strong>https://map.weknews.com</strong> 도메인을 추가해주세요!
                                 </p>
                             )}
                         </div>
