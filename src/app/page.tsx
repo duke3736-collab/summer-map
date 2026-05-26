@@ -68,6 +68,21 @@ export default function Home() {
             };
             const map = new window.kakao.maps.Map(mapContainerRef.current, options);
             mapRef.current = map;
+            
+            // Marker scale based on zoom level
+            const updateMarkerScale = () => {
+                const level = map.getLevel();
+                let scale = 1;
+                if (level <= 4) scale = 1.4;
+                else if (level <= 7) scale = 1.2;
+                else if (level <= 10) scale = 1.0;
+                else scale = 0.8;
+                document.documentElement.style.setProperty('--marker-scale', scale.toString());
+            };
+            
+            updateMarkerScale(); // Initial call
+            window.kakao.maps.event.addListener(map, 'zoom_changed', updateMarkerScale);
+
             setMapLoaded(true);
         });
     };
@@ -104,8 +119,8 @@ export default function Home() {
             const isDiscount = isDiscountRegion(place.name + " " + place.description);
             const contentNode = document.createElement('div');
             contentNode.innerHTML = `
-                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center cursor-pointer shadow-md hover:scale-110 transition-transform" style="font-size: 20px; transform-origin: bottom center;">
-                    ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm">할인 7만</div>' : ''}
+                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center cursor-pointer shadow-md hover:z-50 transition-all duration-300" style="font-size: 20px; transform: scale(var(--marker-scale, 1)); transform-origin: bottom center;">
+                    ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm" style="font-size: 10px;">할인 7만</div>' : ''}
                     ${getMarkerIcon(place.type)}
                 </div>
             `;
