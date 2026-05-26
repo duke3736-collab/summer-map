@@ -277,6 +277,25 @@ export default function Home() {
                 <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
             </div>
 
+            {/* SPONSOR / AFFILIATE BANNER */}
+            <div className="pb-8">
+                <a href="https://www.yanolja.com/" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                    <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition-colors"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+                        <div className="flex items-center gap-4">
+                            <span className="text-5xl group-hover:animate-bounce">🏨</span>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-black mb-1">해수욕장 & 계곡 주변 숙소 실시간 최저가</h3>
+                                <p className="text-pink-100 font-medium text-sm md:text-base">야놀자/여기어때 여름 성수기 펜션·호텔 초특가 모음전!</p>
+                            </div>
+                        </div>
+                        <span className="shrink-0 w-full md:w-auto text-center bg-white text-rose-600 font-black px-8 py-4 rounded-2xl shadow-md group-hover:bg-rose-50 transition-colors text-lg">
+                            특가 확인하기 👉
+                        </span>
+                    </div>
+                </a>
+            </div>
+
             {/* LIST SECTION */}
             <section className="space-y-6">
                 <div className="flex items-center justify-between px-2">
@@ -339,9 +358,18 @@ export default function Home() {
                                         href={`https://map.kakao.com/link/to/${place.name},${place.lat},${place.lng}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1"
+                                        className="text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1 shrink-0"
                                     >
                                         길찾기 🚗
+                                    </a>
+                                    <a 
+                                        href={`https://www.yanolja.com/search/${place.name}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm font-bold text-white bg-rose-500 hover:bg-rose-600 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1 shrink-0"
+                                        title="야놀자 주변 숙소 검색"
+                                    >
+                                        숙소 🏨
                                     </a>
                                 </div>
                             </div>
