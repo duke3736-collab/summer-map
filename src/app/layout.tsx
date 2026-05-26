@@ -47,8 +47,11 @@ export default function RootLayout({
               </span>
             </a>
             <nav className="flex gap-4 sm:gap-6">
-              <a href="https://tools.weknews.com" className="text-sm font-bold text-slate-500 hover:text-sky-600 transition-colors">
-                금융 도구 모음 👉
+              <a href="https://tools.weknews.com" className="relative group inline-flex items-center justify-center">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-300"></div>
+                <span className="relative text-sm font-bold bg-white text-emerald-700 px-4 py-2 rounded-full border border-emerald-200 shadow-sm flex items-center gap-1 group-hover:bg-emerald-50 transition-colors">
+                  💰 금융 계산기 모음
+                </span>
               </a>
             </nav>
           </div>
