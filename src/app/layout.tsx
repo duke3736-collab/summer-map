@@ -14,6 +14,16 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     type: "website",
   },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icon-192x192.png",
+    apple: "/apple-touch-icon.png"
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "씨맵(Sea-Map)",
+  },
 };
 
 export const viewport: Viewport = {

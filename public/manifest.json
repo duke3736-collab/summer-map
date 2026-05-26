@@ -1,0 +1,21 @@
+{
+  "name": "전국 여름 물놀이 씨맵(Sea-Map)",
+  "short_name": "씨맵",
+  "description": "전국 해수욕장, 워터파크, 가성비 수영장, 취사 가능 계곡 지도!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
