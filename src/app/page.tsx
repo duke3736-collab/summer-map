@@ -5,7 +5,7 @@ import Script from "next/script";
 import KakaoShareButton from "@/components/KakaoShareButton";
 import AdSense from "@/components/AdSense";
 
-type MapCategory = 'all' | 'free' | 'cheap' | 'beach' | 'valley';
+type MapCategory = 'all' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
 
 interface WaterPlace {
     id: number;
@@ -73,6 +73,7 @@ export default function Home() {
             case 'cheap': return '🏊‍♂️'; 
             case 'beach': return '🏖️'; 
             case 'valley': return '⛺'; 
+            case 'waterpark': return '🎢';
             default: return '📍';
         }
     };
@@ -209,6 +210,7 @@ export default function Home() {
                             { id: 'all', label: '전체보기 ✨' },
                             { id: 'free', label: '공짜 물놀이터 ⛲' },
                             { id: 'cheap', label: '가성비 수영장 🏊‍♂️' },
+                            { id: 'waterpark', label: '대형 워터파크 🎢' },
                             { id: 'valley', label: '취사가능 계곡 ⛺' },
                             { id: 'beach', label: '전국 해수욕장 🏖️' },
                         ].map((cat) => (
@@ -367,9 +369,9 @@ export default function Home() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-sm font-bold text-white bg-rose-500 hover:bg-rose-600 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1 shrink-0"
-                                        title={place.type === 'cheap' ? "야놀자 티켓/숙소 검색" : "야놀자 주변 숙소 검색"}
+                                        title={place.type === 'cheap' || place.type === 'waterpark' ? "야놀자 티켓/숙소 검색" : "야놀자 주변 숙소 검색"}
                                     >
-                                        {place.type === 'cheap' ? '티켓/숙소 🎫' : '숙소 🏨'}
+                                        {place.type === 'cheap' || place.type === 'waterpark' ? '티켓/숙소 🎫' : '숙소 🏨'}
                                     </a>
                                 </div>
                             </div>
