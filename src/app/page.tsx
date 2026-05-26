@@ -76,8 +76,8 @@ export default function Home() {
         if (mapLoaded) return;
         const interval = setInterval(() => {
             if (window.kakao && window.kakao.maps) {
-                initMap();
                 clearInterval(interval);
+                initMap();
             }
         }, 500);
         return () => clearInterval(interval);
@@ -198,8 +198,8 @@ export default function Home() {
                 {/* Dark Overlay to make text readable */}
                 <div className="absolute inset-0 bg-sky-900/30"></div>
 
-                {/* Sun Element */}
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-300 rounded-full blur-3xl opacity-60 mix-blend-screen animate-pulse"></div>
+                {/* Sun Element (Removed mix-blend and pulse for iOS Safari stability) */}
+                <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-300 rounded-full blur-3xl opacity-60"></div>
                 {/* Water Waves */}
                 <div className="absolute -bottom-32 -left-10 w-[120%] h-64 bg-white/10 rounded-[100%] blur-xl transform -rotate-6"></div>
                 
