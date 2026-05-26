@@ -101,7 +101,7 @@ export default function Home() {
 
         data.forEach(place => {
             const content = `
-                <div class="bg-white rounded-full border-[3px] border-amber-400 shadow-xl px-2 py-1 flex items-center justify-center cursor-pointer hover:scale-125 transition-transform origin-bottom" style="font-size: 24px;">
+                <div class="bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center" style="font-size: 20px;">
                     ${getMarkerIcon(place.type)}
                 </div>
             `;
