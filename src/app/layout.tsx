@@ -3,14 +3,14 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "2026 전국 여름 물놀이 갓성비맵 | 해수욕장 개장일, 수영장, 계곡",
+  title: "2026 전국 여름 물놀이 씨맵(Sea-Map) | 해수욕장 개장일, 수영장, 계곡",
   description: "전국 해수욕장 개장일, 수영장 운영시간 및 이용료, 취사 가능 계곡, 무료 바닥분수까지! 여름 휴가와 피서를 위한 완벽한 가성비 물놀이 지도를 확인하세요.",
-  keywords: "해수욕장 개장일, 수영장 개장일, 수영장 운영기간, 수영장 운영시간, 수영장 이용료, 수영장 가격, 여름 휴가, 여름 피서, 취사가능 계곡, 무료 물놀이터, 바닥분수, 갓성비맵",
+  keywords: "해수욕장 개장일, 수영장 개장일, 수영장 운영기간, 수영장 운영시간, 수영장 이용료, 수영장 가격, 여름 휴가, 여름 피서, 취사가능 계곡, 무료 물놀이터, 바닥분수, 씨맵(Sea-Map)",
   openGraph: {
-    title: "2026 전국 여름 물놀이 갓성비맵",
+    title: "2026 전국 여름 물놀이 씨맵(Sea-Map)",
     description: "전국 해수욕장 개장일, 가성비 수영장, 취사 가능 계곡 총정리!",
     url: "https://map.weknews.com",
-    siteName: "갓성비맵",
+    siteName: "씨맵(Sea-Map)",
     locale: "ko_KR",
     type: "website",
   },
@@ -62,7 +62,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="w-full bg-slate-900 text-slate-400 py-12 mt-12 border-t-4 border-sky-500">
           <div className="max-w-5xl mx-auto px-4 text-center space-y-4">
-            <p className="font-black text-white text-xl">🏝️ 전국 물놀이 갓성비맵</p>
+            <p className="font-black text-white text-xl">🏝️ 전국 물놀이 씨맵(Sea-Map)</p>
             <p className="text-sm font-medium">대한민국 최고의 가성비 피서를 위한 지도 서비스</p>
             <div className="pt-4 text-xs opacity-60">
               <p>© 2026 Weknews PlayMap. All rights reserved.</p>

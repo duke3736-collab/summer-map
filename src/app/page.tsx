@@ -187,9 +187,9 @@ export default function Home() {
                     <span className="inline-block px-4 py-1.5 bg-amber-300 text-amber-900 font-black rounded-full text-sm md:text-base tracking-wider shadow-lg transform -rotate-2">
                         가성비 피서 프로젝트 ☀️
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-md">
+                    <h1 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
                         전국 여름 물놀이 <br/>
-                        <span className="text-amber-300 drop-shadow-lg">갓성비맵</span> 🏝️
+                        <span className="text-amber-300 drop-shadow-lg">씨맵(Sea-Map)</span> 🏝️
                     </h1>
                     <p className="text-sky-100 text-lg md:text-xl font-semibold max-w-2xl mx-auto">
                         공짜 동네 바닥분수부터 5천원 야외 수영장까지! <br/> 가장 알뜰하고 시원하게 여름을 즐기는 방법
@@ -335,7 +335,7 @@ export default function Home() {
                     <div className="text-5xl mb-4 animate-bounce">💡</div>
                     <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">나만 아는 우리 동네 물놀이 명소가 있다면?</h2>
                     <p className="text-slate-600 font-medium pb-4 max-w-lg mx-auto">
-                        갓성비맵은 여러분의 제보로 완성됩니다! 동네 무료 분수, 저렴한 수영장, 취사 가능한 숨은 계곡을 알려주세요.
+                        씨맵(Sea-Map)은 여러분의 제보로 완성됩니다! 동네 무료 분수, 저렴한 수영장, 취사 가능한 숨은 계곡을 알려주세요.
                     </p>
                     <a 
                         href="https://forms.gle/여기에구글폼주소를넣어주세요" 
@@ -355,8 +355,10 @@ export default function Home() {
 
             <div className="pt-8">
                 <KakaoShareButton 
-                    title="2026 전국 여름 물놀이 갓성비맵 🏝️" 
-                    description="공짜 동네 물놀이터부터 가성비 수영장, 취사 가능한 계곡까지! 우리 동네 꿀정보 확인하기" 
+                    title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
+                    description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
+                    imageUrl="https://map.weknews.com/images/hero-bg.png"
+                    linkUrl="https://map.weknews.com/"
                     kakaoAppKey={KAKAO_APP_KEY}
                 />
             </div>
