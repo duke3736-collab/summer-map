@@ -73,10 +73,10 @@ export default function Home() {
             const updateMarkerScale = () => {
                 const level = map.getLevel();
                 let scale = 1;
-                if (level <= 4) scale = 1.4;
-                else if (level <= 7) scale = 1.2;
-                else if (level <= 10) scale = 1.0;
-                else scale = 0.8;
+                if (level <= 4) scale = 1.6;
+                else if (level <= 7) scale = 1.3;
+                else if (level <= 10) scale = 1.1;
+                else scale = 0.9;
                 document.documentElement.style.setProperty('--marker-scale', scale.toString());
             };
             
@@ -119,8 +119,8 @@ export default function Home() {
             const isDiscount = isDiscountRegion(place.name + " " + place.description);
             const contentNode = document.createElement('div');
             contentNode.innerHTML = `
-                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center cursor-pointer shadow-md hover:z-50 transition-all duration-300" style="font-size: 20px; transform: scale(var(--marker-scale, 1)); transform-origin: bottom center;">
-                    ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm" style="font-size: 10px;">할인 7만</div>' : ''}
+                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-3 py-1.5 flex items-center justify-center cursor-pointer shadow-md hover:z-50 transition-all duration-300" style="font-size: 26px; transform: scale(var(--marker-scale, 1)); transform-origin: bottom center;">
+                    ${isDiscount ? '<div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-rose-500 text-white font-black px-2 py-1 rounded-md whitespace-nowrap shadow-lg border border-rose-400" style="font-size: 11px;">💰 숙박 7만원 지원 지역</div><div class="absolute -top-1 left-1/2 -translate-x-1/2 border-solid border-t-rose-500 border-t-4 border-x-transparent border-x-4 border-b-0"></div>' : ''}
                     ${getMarkerIcon(place.type)}
                 </div>
             `;
