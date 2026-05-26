@@ -101,7 +101,7 @@ export default function Home() {
         markersRef.current = [];
 
         data.forEach(place => {
-            const isDiscount = isDiscountRegion(place.address);
+            const isDiscount = isDiscountRegion(place.name + " " + place.description);
             const content = `
                 <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center" style="font-size: 20px;">
                     ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm">할인 7만</div>' : ''}
@@ -372,11 +372,16 @@ export default function Home() {
                     }).map(place => (
                         <div key={place.id} className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 group">
                             <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-xl font-black text-slate-800 group-hover:text-sky-600 transition-colors flex items-center gap-2">
+                                <h3 className="text-xl font-black text-slate-800 group-hover:text-sky-600 transition-colors flex items-center flex-wrap gap-2">
                                     <button onClick={() => toggleFavorite(place.id)} className="text-2xl hover:scale-125 transition-transform" title="찜하기">
                                         {favorites.includes(place.id) ? '❤️' : '🤍'}
                                     </button>
                                     {getMarkerIcon(place.type)} {place.name}
+                                    {isDiscountRegion(place.name + " " + place.description) && (
+                                        <span className="text-[10px] font-black bg-rose-100 text-rose-600 px-2 py-1 rounded-md border border-rose-200 shadow-sm shrink-0">
+                                            💰 정부 숙박할인 7만원 대상 지역
+                                        </span>
+                                    )}
                                 </h3>
                                 <span className={`text-sm font-bold px-3 py-1.5 rounded-xl whitespace-nowrap ${
                                     calculateDday(place.openDate).includes('개장 중') || calculateDday(place.openDate).includes('상시')
