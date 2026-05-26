@@ -7,9 +7,11 @@ interface KakaoShareButtonProps {
   title: string;
   description: string;
   kakaoAppKey: string; // From Kakao Developers
+  imageUrl?: string;
+  linkUrl?: string;
 }
 
-export default function KakaoShareButton({ title, description, kakaoAppKey }: KakaoShareButtonProps) {
+export default function KakaoShareButton({ title, description, kakaoAppKey, imageUrl, linkUrl }: KakaoShareButtonProps) {
   
   useEffect(() => {
     // Initialize Kakao SDK when the component mounts if not already initialized
@@ -35,18 +37,18 @@ export default function KakaoShareButton({ title, description, kakaoAppKey }: Ka
         content: {
           title: title,
           description: description,
-          imageUrl: 'https://tools.weknews.com/icon-512x512.png', // Replace with a real banner image later
+          imageUrl: imageUrl || 'https://tools.weknews.com/icon-512x512.png',
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: linkUrl || window.location.href,
+            webUrl: linkUrl || window.location.href,
           },
         },
         buttons: [
           {
-            title: '계산 결과 확인하기',
+            title: '자세히 보기',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: linkUrl || window.location.href,
+              webUrl: linkUrl || window.location.href,
             },
           },
         ],
