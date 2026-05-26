@@ -30,6 +30,7 @@ export default function Home() {
     const [selectedCategory, setSelectedCategory] = useState<MapCategory>('all');
     const [places, setPlaces] = useState<WaterPlace[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
     const mapContainerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<any>(null);
     const markersRef = useRef<any[]>([]);
@@ -115,12 +116,14 @@ export default function Home() {
 
     useEffect(() => {
         if (mapLoaded && mapRef.current) {
-            const filtered = selectedCategory === 'all' 
-                ? places 
-                : places.filter(p => p.type === selectedCategory);
+            const filtered = places.filter(p => {
+                const matchCategory = selectedCategory === 'all' || p.type === selectedCategory;
+                const matchSearch = p.name.includes(searchQuery) || p.tags.join(" ").includes(searchQuery) || p.description.includes(searchQuery);
+                return matchCategory && matchSearch;
+            });
             renderMarkers(filtered, mapRef.current);
         }
-    }, [selectedCategory, mapLoaded, places]);
+    }, [selectedCategory, searchQuery, mapLoaded, places]);
 
     const calculateDday = (dateString: string) => {
         if (dateString === "상시 개방") return "상시 개방 🟢";
@@ -224,6 +227,22 @@ export default function Home() {
                     </div>
                 </div>
 
+                {/* Search Bar */}
+                <div className="px-4 md:px-6 py-4 border-b border-slate-100 bg-white">
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span className="text-xl">🔍</span>
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="해운대, 바닥분수, 취사, 무료 등 명소나 특징을 검색하세요..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-12 pr-4 py-3 font-bold focus:outline-none focus:ring-2 focus:ring-sky-400 focus:bg-white transition-colors"
+                        />
+                    </div>
+                </div>
+
                 {/* Map */}
                 <div className="relative w-full h-[450px] md:h-[600px] bg-sky-50">
                     {(!mapLoaded || isLoading) && (
@@ -267,7 +286,11 @@ export default function Home() {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {(selectedCategory === 'all' ? places : places.filter(p => p.type === selectedCategory)).map(place => (
+                    {places.filter(p => {
+                        const matchCategory = selectedCategory === 'all' || p.type === selectedCategory;
+                        const matchSearch = p.name.includes(searchQuery) || p.tags.join(" ").includes(searchQuery) || p.description.includes(searchQuery);
+                        return matchCategory && matchSearch;
+                    }).map(place => (
                         <div key={place.id} className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 group">
                             <div className="flex justify-between items-start mb-4">
                                 <h3 className="text-xl font-black text-slate-800 group-hover:text-sky-600 transition-colors flex items-center gap-2">
