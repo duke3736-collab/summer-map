@@ -302,7 +302,7 @@ export default function Home() {
 
             {/* AdSense Unit (Top) */}
             <div className="py-4">
-                <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
+                <AdSense className="my-4 min-h-[100px]" />
             </div>
 
             {/* SPONSOR / AFFILIATE BANNER */}
@@ -461,7 +461,7 @@ export default function Home() {
             </section>
 
             <div className="py-4">
-                <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
+                <AdSense className="my-4 min-h-[100px]" />
             </div>
             
         </div>
