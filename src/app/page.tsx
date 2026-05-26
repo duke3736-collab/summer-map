@@ -227,7 +227,7 @@ export default function Home() {
                         />
                     </div>
                     
-                    <a href="#" className="mt-2 mx-auto max-w-lg block w-full bg-rose-600/90 hover:bg-rose-600 border border-rose-400 rounded-xl p-3 shadow-lg transition-transform hover:scale-105 animate-pulse cursor-pointer">
+                    <a href="https://weknews.com/how-to-apply-for-the-2026-accommodation-sale-festa/" target="_blank" rel="noopener noreferrer" className="mt-2 mx-auto max-w-lg block w-full bg-rose-600/90 hover:bg-rose-600 border border-rose-400 rounded-xl p-3 shadow-lg transition-transform hover:scale-105 animate-pulse cursor-pointer">
                         <p className="text-white font-bold text-sm md:text-base flex items-center justify-center gap-2">
                             <span>🔥</span>
                             [선착순] 올여름 숙박지원금 7만 원 100% 받는 법 (6/11 오픈)
