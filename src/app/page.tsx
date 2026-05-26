@@ -102,16 +102,26 @@ export default function Home() {
 
         data.forEach(place => {
             const isDiscount = isDiscountRegion(place.name + " " + place.description);
-            const content = `
-                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center" style="font-size: 20px;">
+            const contentNode = document.createElement('div');
+            contentNode.innerHTML = `
+                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center cursor-pointer shadow-md hover:scale-110 transition-transform" style="font-size: 20px; transform-origin: bottom center;">
                     ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm">할인 7만</div>' : ''}
                     ${getMarkerIcon(place.type)}
                 </div>
             `;
+            contentNode.onclick = () => {
+                const card = document.getElementById(`place-${place.id}`);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.classList.add('ring-4', 'ring-sky-400', 'scale-[1.02]');
+                    setTimeout(() => card.classList.remove('ring-4', 'ring-sky-400', 'scale-[1.02]'), 2000);
+                }
+            };
+
             const position = new window.kakao.maps.LatLng(place.lat, place.lng);
             const customOverlay = new window.kakao.maps.CustomOverlay({
                 position: position,
-                content: content,
+                content: contentNode,
                 yAnchor: 1
             });
             customOverlay.setMap(mapInstance);
@@ -388,7 +398,7 @@ export default function Home() {
                         const matchSearch = p.name.includes(searchQuery) || p.tags.join(" ").includes(searchQuery) || p.description.includes(searchQuery);
                         return matchCategory && matchSearch;
                     }).map(place => (
-                        <div key={place.id} className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 group">
+                        <div key={place.id} id={`place-${place.id}`} className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 group">
                             <div className="flex justify-between items-start mb-4">
                                 <h3 className="text-xl font-black text-slate-800 group-hover:text-sky-600 transition-colors flex items-center flex-wrap gap-2">
                                     <button onClick={() => toggleFavorite(place.id)} className="text-2xl hover:scale-125 transition-transform" title="찜하기">
