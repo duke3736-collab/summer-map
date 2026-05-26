@@ -5,7 +5,7 @@ import Script from "next/script";
 import KakaoShareButton from "@/components/KakaoShareButton";
 import AdSense from "@/components/AdSense";
 
-type MapCategory = 'all' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
+type MapCategory = 'all' | 'favorites' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
 
 interface WaterPlace {
     id: number;
@@ -31,9 +31,25 @@ export default function Home() {
     const [places, setPlaces] = useState<WaterPlace[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
+    const [favorites, setFavorites] = useState<number[]>([]);
     const mapContainerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<any>(null);
     const markersRef = useRef<any[]>([]);
+
+    useEffect(() => {
+        const savedFavorites = localStorage.getItem('sea-map-favorites');
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
+    }, []);
+
+    const toggleFavorite = (id: number) => {
+        setFavorites(prev => {
+            const newFavs = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
+            localStorage.setItem('sea-map-favorites', JSON.stringify(newFavs));
+            return newFavs;
+        });
+    };
 
     const KAKAO_APP_KEY = "11032eefd7d0111cb94d93c0ab41eb01";
 
@@ -118,13 +134,13 @@ export default function Home() {
     useEffect(() => {
         if (mapLoaded && mapRef.current) {
             const filtered = places.filter(p => {
-                const matchCategory = selectedCategory === 'all' || p.type === selectedCategory;
+                const matchCategory = selectedCategory === 'all' || (selectedCategory === 'favorites' ? favorites.includes(p.id) : p.type === selectedCategory);
                 const matchSearch = p.name.includes(searchQuery) || p.tags.join(" ").includes(searchQuery) || p.description.includes(searchQuery);
                 return matchCategory && matchSearch;
             });
             renderMarkers(filtered, mapRef.current);
         }
-    }, [selectedCategory, searchQuery, mapLoaded, places]);
+    }, [selectedCategory, searchQuery, mapLoaded, places, favorites]);
 
     const calculateDday = (dateString: string) => {
         if (dateString === "상시 개방") return "상시 개방 🟢";
@@ -208,6 +224,7 @@ export default function Home() {
                     <div className="flex overflow-x-auto gap-3 pb-2 scrollbar-hide">
                         {[
                             { id: 'all', label: '전체보기 ✨' },
+                            { id: 'favorites', label: '내 저장소 ❤️' },
                             { id: 'free', label: '공짜 물놀이터 ⛲' },
                             { id: 'cheap', label: '가성비 수영장 🏊‍♂️' },
                             { id: 'waterpark', label: '대형 워터파크 🎢' },
@@ -280,7 +297,8 @@ export default function Home() {
             </div>
 
             {/* SPONSOR / AFFILIATE BANNER */}
-            <div className="pb-8">
+            <div className="pb-8 space-y-4">
+                {/* 야놀자 배너 */}
                 <a href="https://www.yanolja.com/" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
                     <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition-colors"></div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
@@ -296,6 +314,24 @@ export default function Home() {
                         </span>
                     </div>
                 </a>
+
+                {/* 쿠팡 파트너스 배너 */}
+                <a href="https://link.coupang.com/a/YOUR_COUPANG_LINK" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                    <div className="absolute -left-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+                        <div className="flex items-center gap-4">
+                            <span className="text-5xl group-hover:scale-110 transition-transform">🛟</span>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-black mb-1">물놀이 필수템 초특가 기획전</h3>
+                                <p className="text-blue-100 font-medium text-sm md:text-base">튜브, 구명조끼, 아쿠아슈즈, 바베큐 용품 쿠팡 최저가 득템!</p>
+                            </div>
+                        </div>
+                        <span className="shrink-0 w-full md:w-auto text-center bg-white text-indigo-700 font-black px-8 py-4 rounded-2xl shadow-md group-hover:bg-indigo-50 transition-colors text-lg">
+                            쿠팡 특가 보기 🚀
+                        </span>
+                    </div>
+                    <div className="absolute bottom-2 right-4 text-[10px] text-white/40">파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있음</div>
+                </a>
             </div>
 
             {/* LIST SECTION */}
@@ -308,13 +344,16 @@ export default function Home() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {places.filter(p => {
-                        const matchCategory = selectedCategory === 'all' || p.type === selectedCategory;
+                        const matchCategory = selectedCategory === 'all' || (selectedCategory === 'favorites' ? favorites.includes(p.id) : p.type === selectedCategory);
                         const matchSearch = p.name.includes(searchQuery) || p.tags.join(" ").includes(searchQuery) || p.description.includes(searchQuery);
                         return matchCategory && matchSearch;
                     }).map(place => (
                         <div key={place.id} className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 group">
                             <div className="flex justify-between items-start mb-4">
                                 <h3 className="text-xl font-black text-slate-800 group-hover:text-sky-600 transition-colors flex items-center gap-2">
+                                    <button onClick={() => toggleFavorite(place.id)} className="text-2xl hover:scale-125 transition-transform" title="찜하기">
+                                        {favorites.includes(place.id) ? '❤️' : '🤍'}
+                                    </button>
                                     {getMarkerIcon(place.type)} {place.name}
                                 </h3>
                                 <span className={`text-sm font-bold px-3 py-1.5 rounded-xl whitespace-nowrap ${
@@ -356,14 +395,24 @@ export default function Home() {
                                     >
                                         지도 📍
                                     </button>
-                                    <a 
-                                        href={`https://map.kakao.com/link/to/${place.name},${place.lat},${place.lng}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1 shrink-0"
-                                    >
-                                        길찾기 🚗
-                                    </a>
+                                    <div className="flex items-center bg-slate-100 rounded-xl p-1 gap-1">
+                                        <a 
+                                            href={`https://map.kakao.com/link/to/${place.name},${place.lat},${place.lng}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold text-slate-800 bg-[#FEE500] hover:bg-[#F4DC00] px-3 py-2 rounded-lg transition-colors shadow-sm"
+                                        >
+                                            카카오 🚗
+                                        </a>
+                                        <a 
+                                            href={`https://map.naver.com/v5/search/${place.name}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold text-white bg-[#03C75A] hover:bg-[#02b351] px-3 py-2 rounded-lg transition-colors shadow-sm"
+                                        >
+                                            네이버 🚙
+                                        </a>
+                                    </div>
                                     <a 
                                         href={`https://www.yanolja.com/search/${place.name}`}
                                         target="_blank"
