@@ -367,9 +367,9 @@ export default function Home() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-sm font-bold text-white bg-rose-500 hover:bg-rose-600 px-4 py-2 rounded-xl transition-colors shadow-md flex items-center gap-1 shrink-0"
-                                        title="야놀자 주변 숙소 검색"
+                                        title={place.type === 'cheap' ? "야놀자 티켓/숙소 검색" : "야놀자 주변 숙소 검색"}
                                     >
-                                        숙소 🏨
+                                        {place.type === 'cheap' ? '티켓/숙소 🎫' : '숙소 🏨'}
                                     </a>
                                 </div>
                             </div>
