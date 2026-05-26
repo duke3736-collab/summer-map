@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
-import KakaoShareButton from "@/components/KakaoShareButton";
+import ShareButtons from "@/components/ShareButtons";
 import AdSense from "@/components/AdSense";
 
 type MapCategory = 'all' | 'favorites' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
@@ -214,6 +214,15 @@ export default function Home() {
                     <p className="text-sky-100 text-lg md:text-xl font-semibold max-w-2xl mx-auto">
                         공짜 동네 바닥분수부터 5천원 야외 수영장까지! <br/> 가장 알뜰하고 시원하게 여름을 즐기는 방법
                     </p>
+                    <div className="pt-4">
+                        <ShareButtons 
+                            title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
+                            description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
+                            imageUrl="https://map.weknews.com/images/hero-bg.png"
+                            linkUrl="https://map.weknews.com/"
+                            kakaoAppKey={KAKAO_APP_KEY}
+                        />
+                    </div>
                 </div>
             </section>
 
@@ -451,19 +460,8 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* AdSense Unit (Bottom) */}
             <div className="py-4">
                 <AdSense className="my-4 min-h-[100px] bg-slate-50 border border-slate-100 rounded-xl" />
-            </div>
-
-            <div className="pt-8">
-                <KakaoShareButton 
-                    title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
-                    description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
-                    imageUrl="https://map.weknews.com/images/hero-bg.png"
-                    linkUrl="https://map.weknews.com/"
-                    kakaoAppKey={KAKAO_APP_KEY}
-                />
             </div>
             
         </div>
