@@ -356,7 +356,7 @@ export default function Home() {
                 </a>
 
                 {/* 쿠팡 파트너스 배너 (워터파크 이용권) */}
-                <a href="https://link.coupang.com/a/d3Ebxt3Cpw" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-teal-400 to-cyan-600 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                <a href="https://link.coupang.com/a/d3ZvCK8Yo0" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-teal-400 to-cyan-600 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
                     <div className="absolute -left-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
                         <div className="flex items-center gap-4">
