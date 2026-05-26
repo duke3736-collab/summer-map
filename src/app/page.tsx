@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import ShareButtons from "@/components/ShareButtons";
 import AdSense from "@/components/AdSense";
+import { isDiscountRegion } from "@/utils/regions";
 
 type MapCategory = 'all' | 'favorites' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
 
@@ -100,8 +101,10 @@ export default function Home() {
         markersRef.current = [];
 
         data.forEach(place => {
+            const isDiscount = isDiscountRegion(place.address);
             const content = `
-                <div class="bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center" style="font-size: 20px;">
+                <div class="relative bg-white rounded-full border-[3px] border-amber-400 px-2 py-1 flex items-center justify-center" style="font-size: 20px;">
+                    ${isDiscount ? '<div class="absolute -top-3 -right-6 bg-rose-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md whitespace-nowrap shadow-sm">할인 7만</div>' : ''}
                     ${getMarkerIcon(place.type)}
                 </div>
             `;
@@ -214,7 +217,7 @@ export default function Home() {
                     <p className="text-sky-100 text-lg md:text-xl font-semibold max-w-2xl mx-auto">
                         공짜 동네 바닥분수부터 5천원 야외 수영장까지! <br/> 가장 알뜰하고 시원하게 여름을 즐기는 방법
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-4 pb-2">
                         <ShareButtons 
                             title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
                             description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
@@ -223,6 +226,14 @@ export default function Home() {
                             kakaoAppKey={KAKAO_APP_KEY}
                         />
                     </div>
+                    
+                    <a href="#" className="mt-2 mx-auto max-w-lg block w-full bg-rose-600/90 hover:bg-rose-600 border border-rose-400 rounded-xl p-3 shadow-lg transition-transform hover:scale-105 animate-pulse cursor-pointer">
+                        <p className="text-white font-bold text-sm md:text-base flex items-center justify-center gap-2">
+                            <span>🔥</span>
+                            [선착순] 올여름 숙박지원금 7만 원 100% 받는 법 (6/11 오픈)
+                            <span>👉</span>
+                        </p>
+                    </a>
                 </div>
             </section>
 
@@ -289,6 +300,7 @@ export default function Home() {
                     )}
                     <div ref={mapContainerRef} className="w-full h-full"></div>
                     
+
                     {/* GPS Button */}
                     <button 
                         onClick={findMyLocation}
@@ -315,7 +327,7 @@ export default function Home() {
                             <span className="text-5xl group-hover:animate-bounce">🏨</span>
                             <div>
                                 <h3 className="text-xl md:text-2xl font-black mb-1">여름 피서지 주변 숙소 실시간 최저가</h3>
-                                <p className="text-pink-100 font-medium text-sm md:text-base">쿠팡 트래블 단독! 여름 성수기 펜션·호텔 초특가 (최대 3% 적립)</p>
+                                <p className="text-pink-100 font-medium text-sm md:text-base">쿠팡 트래블 단독! 정부 숙박할인 7만원권 꿀조합 숙소 초특가</p>
                             </div>
                         </div>
                         <span className="shrink-0 w-full md:w-auto text-center bg-white text-rose-600 font-black px-8 py-4 rounded-2xl shadow-md group-hover:bg-rose-50 transition-colors text-lg">
