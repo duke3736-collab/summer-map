@@ -522,6 +522,25 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* MYSTIC AI BANNER */}
+            <a href="https://mystic.weknews.com/" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-br from-indigo-900 to-purple-900 rounded-3xl p-6 md:p-10 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                <div className="absolute -left-10 -top-10 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl group-hover:bg-pink-500/30 transition-colors"></div>
+                <div className="absolute right-10 bottom-10 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl group-hover:bg-purple-500/30 transition-colors"></div>
+                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+                    <div className="flex items-center gap-4 md:gap-6">
+                        <span className="text-5xl md:text-6xl group-hover:scale-110 transition-transform duration-500">🔮</span>
+                        <div>
+                            <span className="inline-block px-2 py-1 bg-purple-500/30 border border-purple-400/50 rounded-md text-purple-200 text-xs font-bold mb-2">가입/로그인 없음</span>
+                            <h3 className="text-xl md:text-3xl font-black mb-2 tracking-tight">여름휴가 전, 나의 운세는?</h3>
+                            <p className="text-indigo-200 font-medium text-sm md:text-base">소름 돋게 정확한 AI 타로와 사주를 미스틱 AI에서 평생 무료로 확인해보세요!</p>
+                        </div>
+                    </div>
+                    <span className="shrink-0 w-full md:w-auto text-center bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 font-black px-8 py-4 rounded-2xl shadow-lg transition-colors text-lg border border-pink-400/30">
+                        무료 타로 보기 ✨
+                    </span>
+                </div>
+            </a>
+
             <div className="py-4">
                 <AdSense className="my-4 min-h-[100px]" />
             </div>
