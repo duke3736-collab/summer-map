@@ -71,6 +71,12 @@ export default function RootLayout({
               </span>
             </a>
             <nav className="flex gap-4 sm:gap-6">
+              <a href="https://drive.weknews.com" className="relative group inline-flex items-center justify-center hidden sm:flex">
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-amber-500 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
+                <span className="relative text-sm font-bold bg-white text-orange-700 px-4 py-2 rounded-full border border-orange-200 shadow-sm flex items-center gap-1 group-hover:bg-orange-50 transition-colors">
+                  🚗 드라이브 코스
+                </span>
+              </a>
               <a href="https://tools.weknews.com" className="relative group inline-flex items-center justify-center">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-300"></div>
                 <span className="relative text-sm font-bold bg-white text-emerald-700 px-4 py-2 rounded-full border border-emerald-200 shadow-sm flex items-center gap-1 group-hover:bg-emerald-50 transition-colors">

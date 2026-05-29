@@ -351,6 +351,23 @@ export default function Home() {
 
             {/* SPONSOR / AFFILIATE BANNER */}
             <div className="pb-8 space-y-4">
+                {/* 드라이브 맵 배너 */}
+                <a href="https://drive.weknews.com/" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
+                    <div className="absolute -left-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition-colors"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+                        <div className="flex items-center gap-4">
+                            <span className="text-5xl group-hover:scale-110 transition-transform">🚗</span>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-black mb-1">답답할 땐? 전국 감성 드라이브 코스</h3>
+                                <p className="text-orange-100 font-medium text-sm md:text-base">바다, 노을, 야경까지! 1초 만에 확인하는 인생 드라이브 코스 모음</p>
+                            </div>
+                        </div>
+                        <span className="shrink-0 w-full md:w-auto text-center bg-white text-orange-600 font-black px-8 py-4 rounded-2xl shadow-md group-hover:bg-orange-50 transition-colors text-lg">
+                            코스 보기 👉
+                        </span>
+                    </div>
+                </a>
+
                 {/* 쿠팡 트래블 (숙소) 배너 */}
                 <a href="https://link.coupang.com/a/d3Ebxt3Cpw" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group overflow-hidden relative">
                     <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/20 rounded-full blur-2xl group-hover:bg-white/30 transition-colors"></div>
