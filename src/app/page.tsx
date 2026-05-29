@@ -243,16 +243,7 @@ export default function Home() {
                     <p className="text-sky-100 text-lg md:text-xl font-semibold max-w-2xl mx-auto break-keep text-balance">
                         공짜 동네 바닥분수부터 5천원 야외 수영장까지! <br/> 가장 알뜰하고 시원하게 여름을 즐기는 방법
                     </p>
-                    <div className="pt-4 pb-2">
-                        <ShareButtons 
-                            title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
-                            description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
-                            imageUrl="https://map.weknews.com/images/hero-bg.png"
-                            linkUrl="https://map.weknews.com/"
-                            kakaoAppKey={KAKAO_APP_KEY}
-                        />
-                        <PWAInstallButton />
-                    </div>
+
                     
                     <a href="https://weknews.com/how-to-apply-for-the-2026-accommodation-sale-festa/" target="_blank" rel="noopener noreferrer" className="mt-2 mx-auto max-w-lg block w-full bg-rose-600/90 hover:bg-rose-600 border border-rose-400 rounded-xl p-3 shadow-lg transition-transform hover:scale-105 animate-pulse cursor-pointer">
                         <p className="text-white font-bold text-sm md:text-base flex items-center justify-center gap-2">
@@ -338,6 +329,20 @@ export default function Home() {
                     </button>
                 </div>
             </section>
+
+            {/* 유용한 기능 (공유 및 앱 설치) */}
+            <div className="py-2 px-4 max-w-lg mx-auto">
+                <ShareButtons 
+                    title="2026 전국 여름 물놀이 씨맵(Sea-Map) 🏝️" 
+                    description="전국 꿀장소(무료 바닥분수, 가성비 수영장)를 지도로 한눈에! 나만 아는 피서지도 제보해주세요!"
+                    imageUrl="https://map.weknews.com/images/hero-bg.png"
+                    linkUrl="https://map.weknews.com/"
+                    kakaoAppKey={KAKAO_APP_KEY}
+                />
+                <div className="mt-4">
+                    <PWAInstallButton />
+                </div>
+            </div>
 
             {/* AdSense Unit (Top) */}
             <div className="py-4">
