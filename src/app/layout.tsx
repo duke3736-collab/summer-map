@@ -44,10 +44,10 @@ export default function RootLayout({
           crossOrigin="anonymous" 
           strategy="afterInteractive"
         />
-        {/* Google Analytics 4 (Placeholder ID) */}
+        {/* Google Analytics 4 */}
         <Script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXX3`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-34XVQWW0WJ`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -55,7 +55,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXX3');
+            gtag('config', 'G-34XVQWW0WJ');
           `}
         </Script>
       </head>
