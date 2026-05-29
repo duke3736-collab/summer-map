@@ -52,15 +52,16 @@ export default function PWAInstallButton() {
     <div className="relative mt-8 flex flex-col items-center">
       <button 
         onClick={handleInstallClick}
-        className="group inline-flex flex-col sm:flex-row items-center gap-4 bg-white/10 hover:bg-white/20 active:bg-white/30 backdrop-blur-md border border-white/20 p-4 rounded-2xl cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98]"
+        className="group inline-flex flex-col sm:flex-row items-center gap-4 bg-white hover:bg-sky-50 active:bg-sky-100 border border-sky-200 shadow-lg p-4 rounded-2xl cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] w-full justify-center"
       >
         <div className="text-4xl group-hover:animate-bounce">📱</div>
-        <div className="text-left">
-          <div className="text-white font-bold flex items-center gap-2">
-            스마트폰 앱으로 더 편하게 보세요!
-            <span className="bg-indigo-500 text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">설치하기</span>
+        <div className="text-left flex-1 min-w-0">
+          <div className="text-slate-800 font-bold flex flex-wrap items-center gap-1.5 tracking-tight text-[15px]">
+            <span className="break-keep whitespace-nowrap">스마트폰 앱으로</span> 
+            <span className="break-keep whitespace-nowrap">더 편하게 보세요!</span>
+            <span className="bg-indigo-500 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse shrink-0">설치하기</span>
           </div>
-          <div className="text-indigo-200 text-sm mt-1">
+          <div className="text-slate-500 text-[13px] mt-1 break-keep">
             이 버튼을 눌러 홈 화면에 앱을 바로 추가하세요.
           </div>
         </div>
