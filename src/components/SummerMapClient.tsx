@@ -7,6 +7,8 @@ import PWAInstallButton from "@/components/PWAInstallButton";
 import AdSense from "@/components/AdSense";
 import { isDiscountRegion } from "@/utils/regions";
 
+import localPlacesData from "@/data/places.json";
+
 type MapCategory = 'all' | 'favorites' | 'free' | 'cheap' | 'beach' | 'valley' | 'waterpark';
 
 interface WaterPlace {
@@ -30,9 +32,10 @@ declare global {
 export default function SummerMapClient() {
     const [mapLoaded, setMapLoaded] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<MapCategory>('all');
-    const [places, setPlaces] = useState<WaterPlace[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [places, setPlaces] = useState<WaterPlace[]>(localPlacesData as WaterPlace[]);
+    const [isLoading, setIsLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+
     const [favorites, setFavorites] = useState<number[]>([]);
     const mapContainerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<any>(null);
@@ -149,10 +152,16 @@ export default function SummerMapClient() {
         const fetchPlaces = async () => {
             try {
                 const res = await fetch("https://script.google.com/macros/s/AKfycbzcgqdSvU52oNz9Q7etD3fqy6AzquqS5IqwavCqLT9JA4t9rUCxlRazFg2Cn-WX5Py76g/exec");
-                const data = await res.json();
-                setPlaces(data);
+                if (res.ok) {
+                    const remoteData = await res.json();
+                    const mergedMap = new Map(remoteData.map((p: any) => [p.id, p]));
+                    (localPlacesData as any[]).forEach((lp: any) => {
+                        mergedMap.set(lp.id, lp);
+                    });
+                    setPlaces(Array.from(mergedMap.values()) as WaterPlace[]);
+                }
             } catch (err) {
-                console.error("Failed to load map data", err);
+                console.error("Failed to load map data from remote, keeping local data", err);
             } finally {
                 setIsLoading(false);
             }
